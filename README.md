@@ -70,5 +70,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 **Anjaya** – [@anjaya02](https://github.com/anjaya02)
 
 Feel free to fork, star, or contribute!
-
-```
