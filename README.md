@@ -72,8 +72,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 Feel free to fork, star, or contribute!
 
 ```
-
----
-
-Let me know if you’d like a **live demo link**, deployment guide (e.g., Vercel), or CI/CD badge support added to the README.
-```
