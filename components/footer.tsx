@@ -1,13 +1,13 @@
 "use client"
 
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Facebook, Mail } from "lucide-react"
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Mail, href: "mailto:john.developer@email.com", label: "Email" },
+    { icon: Github, href: "https://github.com/anjaya02", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/anjaya02/", label: "LinkedIn" },
+    { icon: Facebook, href: "https://facebook.com/Anjaya.induwara1", label: "Facebook" },
+    { icon: Mail, href: "mailto:anjayainduwara@gmail.com", label: "Email" },
   ]
 
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="mb-6 md:mb-0">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              John Developer
+              Anjaya Induwara
             </h3>
             <p className="text-gray-400 mt-2">Building the future, one line of code at a time.</p>
           </div>
@@ -41,7 +41,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-slate-800 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} John Developer. All rights reserved.</p>
+          <p className="text-gray-400">© {new Date().getFullYear()} Anjaya Induwara. All rights reserved.</p>
         </div>
       </div>
     </footer>
