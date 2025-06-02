@@ -14,20 +14,24 @@ interface Ripple extends Point {
 export default function CustomCursor() {
   const [pos, setPos] = useState<Point>({ x: 0, y: 0 });
   const [isHidden, setIsHidden] = useState(true);
+  const [isMobile, setIsMobile] = useState(false); // ✅ Track if mobile
   const lagRef = useRef<HTMLDivElement>(null);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const rippleCounter = useRef(0);
 
   useEffect(() => {
+    // ✅ Disable on mobile
+    const isTouch = window.innerWidth < 768 || "ontouchstart" in window;
+    setIsMobile(isTouch);
+
+    if (isTouch) return; // ⛔ Skip listener setup for mobile
+
     const move = (e: MouseEvent) => {
       const point = { x: e.clientX, y: e.clientY };
       setPos(point);
       setIsHidden(false);
-      // animate lag ring via transforms (GPU)
       if (lagRef.current) {
-        lagRef.current.style.transform = `translate3d(${point.x - 12}px, ${
-          point.y - 12
-        }px, 0)`;
+        lagRef.current.style.transform = `translate3d(${point.x - 12}px, ${point.y - 12}px, 0)`;
       }
     };
 
@@ -35,7 +39,6 @@ export default function CustomCursor() {
       const id = rippleCounter.current++;
       const newRipple: Ripple = { id, x: e.clientX, y: e.clientY };
       setRipples((prev) => [...prev, newRipple]);
-      // remove after animation finishes (600 ms)
       setTimeout(() => {
         setRipples((prev) => prev.filter((r) => r.id !== id));
       }, 600);
@@ -56,7 +59,7 @@ export default function CustomCursor() {
     };
   }, []);
 
-  if (isHidden) return null;
+  if (isMobile || isHidden) return null; // ✅ Don’t render anything on mobile
 
   return (
     <div className="fixed inset-0 z-50 pointer-events-none select-none">
