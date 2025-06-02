@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { toast } from "@/hooks/use-toast"; // ✅ Corrected import
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -18,10 +19,7 @@ export default function ContactSection() {
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((p) => ({ ...p, [name]: value }));
-  };
+  ) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +33,21 @@ export default function ContactSection() {
       });
 
       if (!res.ok) throw new Error("Request failed");
-      alert("Message sent successfully!");
+
+      toast({
+        title: "✅ Message sent",
+        description: "Thanks for reaching out! I'll get back to you soon.",
+      });
+
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      alert("Oops – something went wrong. Please try again.");
+    } catch (err) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description:
+          (err as Error)?.message ||
+          "Please check your connection and try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -62,15 +71,14 @@ export default function ContactSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* info */}
+          {/* contact info */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                 Let's Connect
               </h3>
               <p className="text-gray-700 dark:text-gray-400 mb-6">
-                I'm always open to discussing new opportunities, interesting
-                projects, or just chatting about tech.
+                I'm always open to discussing new opportunities or projects.
               </p>
             </div>
 
@@ -97,7 +105,7 @@ export default function ContactSection() {
                     Phone
                   </p>
                   <p className="text-gray-700 dark:text-gray-400">
-                    +94 711687980
+                    +94 711 687 980
                   </p>
                 </div>
               </li>
@@ -117,7 +125,7 @@ export default function ContactSection() {
             </ul>
           </div>
 
-          {/* form */}
+          {/* contact form */}
           <Card className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-md border border-transparent hover:border-purple-500/30 transition-colors">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -133,7 +141,6 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="bg-white/90 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                   <Input
                     name="email"
@@ -142,7 +149,6 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="bg-white/90 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
                 </div>
                 <Input
@@ -151,7 +157,6 @@ export default function ContactSection() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/90 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
                 <Textarea
                   name="message"
@@ -160,19 +165,14 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/90 dark:bg-slate-800/70 border border-slate-300 dark:border-slate-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
-                >
+                <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting ? (
                     "Sending..."
                   ) : (
                     <>
-                      <Send className="h-4 w-4" /> Send Message
+                      <Send className="h-4 w-4 mr-2" />
+                      Send Message
                     </>
                   )}
                 </Button>
