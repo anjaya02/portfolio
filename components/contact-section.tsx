@@ -145,6 +145,7 @@ export default function ContactSection() {
                   <Input
                     name="email"
                     type="email"
+                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleInputChange}
