@@ -128,3 +128,13 @@ html {
 .light .text-muted-foreground {
   color: rgb(75 85 99) !important; /* gray-600 */
 }
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

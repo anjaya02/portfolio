@@ -9,129 +9,162 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 
-export default function ProjectsSection() {
-  const projects = [
-    {
-      title: "WavePass Ticketing System",
-      description:
-        "Built a real-time boat ride ticketing app with vendor/customer roles, live analytics (WebSockets + Chart.js), and concurrency-safe purchases using async mutex. Designed with a responsive UI and a consumer-producer architecture.",
-      // point to the actual WavePass screenshot
-      image: wavepassImage.src,
-      technologies: ["React.js", "Node.js", "MongoDB", "Socket.io", "Tailwind CSS"],
-      githubUrl: "https://github.com/anjaya02/wavepass-ticketing-system",
-      liveUrl: "#", 
-    },
-    {
-      title: "Grade Classification Calculator",
-      description:
-        "Developed a web tool to help CS and SE undergraduates at IIT predict final degree classifications. Features weighted grade calculations, automatic exclusion of the lowest optional module, and a responsive, modern UI.",
-      // point to the actual “class” screenshot
-      image: classImage.src,
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-      githubUrl: "https://github.com/anjaya02/grade-calculator",
-      liveUrl: "https://iit-degree-class.vercel.app/",
-    },
-    {
-      title: "Customer Churn Prediction System",
-      description: `
-Proud to share a hands on ML project where I built a Customer Churn Prediction System based on the Telco dataset. The goal? To identify customers who are likely to leave the service helping businesses take proactive action to retain them.
-      `.trim(),
-      // point to the actual “churn” screenshot
-      image: churnImage.src,
-      technologies: ["Python", "pandas", "scikit-learn", "imbalanced-learn", "Flask", "HTML/CSS"],
-      githubUrl: "https://github.com/anjaya02/churn_project",
-      liveUrl: "#", 
-    },
-  ];
+/**
+ * Describe one portfolio project.
+ */
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  /** Empty string or undefined → button is disabled */
+  githubUrl?: string;
+  liveUrl?: string;
+}
 
+const projects: Project[] = [
+  {
+    title: "WavePass Ticketing System",
+    description:
+      "Built a real‑time boat ride ticketing app with vendor/customer roles, live analytics, and concurrency‑safe purchases.",
+    image: wavepassImage.src,
+    technologies: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Socket.io",
+      "Tailwind CSS",
+    ],
+    githubUrl: "https://github.com/anjaya02/wavepass-ticketing-system",
+  },
+  {
+    title: "Grade Classification Calculator",
+    description:
+      "Predicts final degree classifications for CS students: weighted grade calc, automatic exclusion of the lowest optional module, and responsive UI.",
+    image: classImage.src,
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/anjaya02/grade-calculator",
+    liveUrl: "https://iit-degree-class.vercel.app/",
+  },
+  {
+    title: "Customer Churn Prediction System",
+    description:
+      "ML project that flags customers likely to churn (Telco dataset) so businesses can act before it's too late.",
+    image: churnImage.src,
+    technologies: [
+      "Python",
+      "scikit-learn",
+      "imbalanced-learn",
+      "Flask",
+      "HTML/CSS",
+    ],
+    githubUrl: "https://github.com/anjaya02/churn_project",
+  },
+];
+
+export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 px-4 bg-slate-900/30">
+    <section
+      id="projects"
+      className="py-20 px-4 bg-gray-100/70 dark:bg-slate-900/30 backdrop-blur-sm"
+    >
       <div className="max-w-6xl mx-auto">
+        {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills and passion for development.
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            A selection of recent work that highlights my skill set and passion
+            for development.
           </p>
         </div>
 
+        {/* Project cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((p) => (
             <Card
-              key={index}
-              className="bg-slate-900/50 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:transform hover:scale-105"
+              key={p.title}
+              className="group overflow-hidden border border-transparent bg-white/80 dark:bg-slate-900/50 backdrop-blur-md transition-transform duration-300 hover:scale-[1.03] hover:border-purple-500/40"
             >
+              {/* Thumbnail */}
               <CardHeader className="p-0">
-                <div className="relative overflow-hidden rounded-t-lg">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+                    src={p.image}
+                    alt={p.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent dark:from-slate-900/80" />
                 </div>
               </CardHeader>
 
-              <CardContent className="p-6">
-                <CardTitle className="text-xl font-bold text-white mb-3">
-                  {project.title}
+              <CardContent className="p-6 space-y-4">
+                <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
+                  {p.title}
                 </CardTitle>
-
-                {/* Full description shows with whitespace preserved */}
-                <p className="text-gray-400 mb-4 whitespace-pre-line">
-                  {project.description}
+                <p className="text-gray-700 dark:text-gray-400 text-sm whitespace-pre-line">
+                  {p.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
+                {/* Tech badges */}
+                <div className="flex flex-wrap gap-2">
+                  {p.technologies.map((t) => (
                     <Badge
-                      key={techIndex}
+                      key={t}
                       variant="secondary"
-                      className="bg-purple-500/20 text-purple-300 hover:bg-purple-500/30"
+                      className="bg-purple-500/10 text-purple-500 dark:bg-purple-500/20 dark:text-purple-300"
                     >
-                      {tech}
+                      {t}
                     </Badge>
                   ))}
                 </div>
 
-                <div className="flex space-x-3">
+                {/* Actions */}
+                <div className="flex space-x-3 pt-2">
+                  {/* GitHub button */}
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white"
+                    className="border-purple-400 text-purple-500 hover:bg-purple-500 hover:text-white disabled:opacity-40"
+                    disabled={!p.githubUrl}
                     asChild
                   >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={
-                        project.githubUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
-                      }
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </a>
+                    {p.githubUrl ? (
+                      <a
+                        href={p.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-1" /> Code
+                      </a>
+                    ) : (
+                      <span className="flex items-center">
+                        <Github className="h-4 w-4 mr-1" /> Code
+                      </span>
+                    )}
                   </Button>
 
-                  <Button
-                    size="sm"
-                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-                    asChild
-                  >
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={
-                        project.liveUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
-                      }
+                  {/* Live Demo button */}
+                  {p.liveUrl ? (
+                    <Button
+                      size="sm"
+                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                      asChild
                     >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
-                    </a>
-                  </Button>
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-1" /> Live
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button size="sm" disabled className="disabled:opacity-40">
+                      <ExternalLink className="h-4 w-4 mr-1" /> Live
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

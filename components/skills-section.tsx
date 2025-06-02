@@ -1,37 +1,125 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
+import { motion, type Variants } from "framer-motion"
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiFramer,
+  SiNodedotjs,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
+  SiGraphql,
+  SiGit,
+  SiDocker,
+  SiPython,
+  SiFirebase,
+  SiJupyter,
+  SiPhp,
+  SiPostman,
+  SiHtml5,
+  SiCss3,
+  SiMysql,
+  SiFigma,
+} from "react-icons/si"
+import { FaAws } from "react-icons/fa"
+import { TbBrandVscode } from "react-icons/tb"
+
+/**
+ * Map a skill name to its corresponding icon component.
+ */
+const iconMap = {
+  // Front-end
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  HTML: SiHtml5,
+  CSS: SiCss3,
+  "Tailwind CSS": SiTailwindcss,
+  "Framer Motion": SiFramer,
+
+  // Back-end & Databases
+  "Node.js": SiNodedotjs,
+  "Express.js": SiExpress,
+  Python: SiPython,
+  PHP: SiPhp,
+  SQL: SiMysql,
+  PostgreSQL: SiPostgresql,
+  MongoDB: SiMongodb,
+  Firebase: SiFirebase,
+  GraphQL: SiGraphql,
+
+  // Tools & Others
+  Git: SiGit,
+  Docker: SiDocker,
+  AWS: FaAws,
+  "VS Code": TbBrandVscode,
+  "Jupyter Notebook": SiJupyter,
+  Postman: SiPostman,
+  Figma: SiFigma,
+} as const
+
+type SkillName = keyof typeof iconMap
+
+interface Skill {
+  name: SkillName
+}
+
+// Gentle waving animation for every icon
+const waveVariants: Variants = {
+  wave: {
+    rotate: [0, -10, 10, 0],
+    transition: {
+      duration: 2,
+      ease: "easeInOut",
+      repeat: Infinity,
+    },
+  },
+}
 
 export default function SkillsSection() {
-  const skillCategories = [
+  const skillCategories: {
+    title: string
+    skills: Skill[]
+  }[] = [
     {
       title: "Frontend",
       skills: [
-        { name: "React", level: 95 },
-        { name: "Next.js", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Tailwind CSS", level: 90 },
-        { name: "Framer Motion", level: 80 },
+        { name: "React" },
+        { name: "Next.js" },
+        { name: "TypeScript" },
+        { name: "HTML" },
+        { name: "CSS" },
+        { name: "Tailwind CSS" },
+        { name: "Framer Motion" },
       ],
     },
     {
-      title: "Backend",
+      title: "Backend & Databases",
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 80 },
-        { name: "PostgreSQL", level: 75 },
-        { name: "MongoDB", level: 70 },
-        { name: "GraphQL", level: 65 },
+        { name: "Node.js" },
+        { name: "Express.js" },
+        { name: "Python" },
+        { name: "PHP" },
+        { name: "SQL" },
+        { name: "PostgreSQL" },
+        { name: "MongoDB" },
+        { name: "Firebase" },
+        { name: "GraphQL" },
       ],
     },
     {
       title: "Tools & Others",
       skills: [
-        { name: "Git", level: 90 },
-        { name: "Docker", level: 70 },
-        { name: "AWS", level: 65 },
-        { name: "Figma", level: 80 },
-        { name: "Jest", level: 75 },
+        { name: "Git" },
+        { name: "Docker" },
+        { name: "AWS" },
+        { name: "VS Code" },
+        { name: "Jupyter Notebook" },
+        { name: "Postman" },
+        { name: "Figma" },
       ],
     },
   ]
@@ -44,31 +132,36 @@ export default function SkillsSection() {
             Skills & Technologies
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Here are the technologies and tools I work with to bring ideas to life.
+            The technologies and tools I work with to bring ideas to life.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="space-y-6">
-              <h3 className="text-2xl font-bold text-white text-center mb-6">{category.title}</h3>
+        <div className="grid md:grid-cols-3 gap-12">
+          {skillCategories.map((category, idx) => (
+            <div key={idx} className="space-y-6">
+              <h3 className="text-2xl font-bold text-white text-center">
+                {category.title}
+              </h3>
+
               <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
-                      <Badge variant="secondary" className="bg-purple-500/20 text-purple-300">
-                        {skill.level}%
-                      </Badge>
+                {category.skills.map((skill, i) => {
+                  const Icon = iconMap[skill.name]
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 text-gray-300"
+                    >
+                      <motion.span
+                        variants={waveVariants}
+                        animate="wave"
+                        className="text-3xl"
+                      >
+                        <Icon />
+                      </motion.span>
+                      <span className="font-medium">{skill.name}</span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           ))}

@@ -1,39 +1,34 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "@/components/theme-provider";
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Moon, Sun, Menu, X } from "lucide-react"
+import { useTheme } from "@/components/theme-provider"
 
-// Import Dancing Script from next/font/google
-import { Dancing_Script } from "next/font/google";
-const dancingScript = Dancing_Script({
+// Import a more handwritten, signature-style font
+import { Great_Vibes } from "next/font/google"
+const signatureFont = Great_Vibes({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-signature",
-});
+})
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark")
 
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
-  };
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+    setIsMobileMenuOpen(false)
+  }
 
   const navItems = [
     { label: "About", id: "about" },
@@ -41,7 +36,7 @@ export default function Navbar() {
     { label: "Skills", id: "skills" },
     { label: "Experience", id: "experience" },
     { label: "Contact", id: "contact" },
-  ];
+  ]
 
   return (
     <nav
@@ -53,42 +48,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo (in Dancing Script) */}
-          <div className="flex-shrink-0">
-            <button
-              onClick={() => scrollToSection("hero")}
-              className={`
-                ${dancingScript.className}       /* ← injects Dancing Script */
-                text-2xl 
-                bg-gradient-to-r from-purple-400 to-blue-400 
-                bg-clip-text 
-                text-transparent 
-                hover:from-purple-300 
-                hover:to-blue-300 
-                transition-all duration-300
-                whitespace-nowrap               /* prevent line breaks */
-              `}
-            >
-              Anjaya Induwara
-            </button>
-          </div>
+          {/* Signature logo */}
+          <button
+            onClick={() => scrollToSection("hero")}
+            className={`text-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 whitespace-nowrap ${signatureFont.className}`}
+          >
+            Anjaya Induwara
+          </button>
 
-          {/* Desktop Navigation */}
+          {/* Desktop navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
+              {navItems.map(({ id, label }) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  key={id}
+                  onClick={() => scrollToSection(id)}
                   className="text-muted-foreground hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
-                  {item.label}
+                  {label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
+          {/* Theme toggle & hamburger */}
           <div className="flex items-center space-x-4">
             <Button
               variant="ghost"
@@ -96,11 +79,7 @@ export default function Navbar() {
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-purple-400"
             >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
 
             {/* Mobile menu button */}
@@ -111,27 +90,23 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-muted-foreground hover:text-purple-400"
               >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background/90 backdrop-blur-md rounded-lg mt-2">
-              {navItems.map((item) => (
+              {navItems.map(({ id, label }) => (
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  key={id}
+                  onClick={() => scrollToSection(id)}
                   className="text-muted-foreground hover:text-purple-400 block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors duration-200"
                 >
-                  {item.label}
+                  {label}
                 </button>
               ))}
             </div>
@@ -139,5 +114,5 @@ export default function Navbar() {
         )}
       </div>
     </nav>
-  );
+  )
 }
