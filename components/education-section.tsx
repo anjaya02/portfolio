@@ -1,25 +1,36 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { GraduationCap, Calendar } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Calendar } from "lucide-react";
 
 export default function EducationSection() {
   const education = [
     {
-      degree: "Bachelor of Science in Computer Science",
-      institution: "University of Technology",
-      duration: "2018 - 2022",
-      description: "Focused on software engineering, algorithms, and web development. Graduated Magna Cum Laude.",
-      achievements: ["Dean's List", "Computer Science Award", "Senior Project Excellence"],
+      degree: "Bachelor of Science (Honours) in Computer Science",
+      institution: "University of Westminster",
+      duration: "2023 - 2028",
+      description:
+        "Studied core areas including software engineering, data structures, algorithms, AI, cybersecurity, and full-stack development with hands-on projects.",
+      achievements: [
+        "Batch Representative L5/L6",
+        // "Computer Science Award", "Senior Project Excellence"
+      ],
     },
     {
-      degree: "Full Stack Web Development Bootcamp",
-      institution: "Tech Academy",
-      duration: "2022",
-      description: "Intensive 6-month program covering modern web development technologies and best practices.",
-      achievements: ["Top Graduate", "Best Final Project", "Peer Mentor"],
+      degree: "Physical Science Stream",
+      institution: "Nalanda College, Colombo 10",
+      duration: "2019–2022",
+      description:
+        "Combined Mathematics - B: Strong performance in advanced mathematical problem-solving and analytical reasoning. " +
+        "Chemistry - C: Solid understanding of chemical principles, reactions, and practical laboratory skills. " +
+        "Physics - S: Basic grasp of physics fundamentals including mechanics and electricity, with room for improvement.",
+      achievements: [
+        "Combined Mathematics - B",
+        "Chemistry - C",
+        "Physics - S",
+      ],
     },
-  ]
+  ];
 
   return (
     <section id="education" className="py-20 px-4">
@@ -48,13 +59,17 @@ export default function EducationSection() {
                   </div>
                   <div className="flex-grow">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <h3 className="text-2xl font-bold text-white mb-2 md:mb-0">{edu.degree}</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2 md:mb-0">
+                        {edu.degree}
+                      </h3>
                       <div className="flex items-center text-purple-400">
                         <Calendar className="h-4 w-4 mr-2" />
                         <span>{edu.duration}</span>
                       </div>
                     </div>
-                    <p className="text-xl text-purple-300 mb-4">{edu.institution}</p>
+                    <p className="text-xl text-purple-300 mb-4">
+                      {edu.institution}
+                    </p>
                     <p className="text-gray-400 mb-4">{edu.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {edu.achievements.map((achievement, achievementIndex) => (
@@ -74,5 +89,5 @@ export default function EducationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
