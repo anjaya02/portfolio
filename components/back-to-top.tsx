@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-// import { ChevronUp } from "lucide-react";
 import { ArrowUp } from "lucide-react";
 
 export default function BackToTop() {

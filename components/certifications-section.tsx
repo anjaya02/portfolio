@@ -12,7 +12,6 @@ interface Certificate {
   description: string;
 }
 
-// Logos must live in /public/logos
 const certifications: Certificate[] = [
   {
     title: "REST APIs – Intermediate",

@@ -10,7 +10,6 @@ export default function HeroSection() {
   };
 
   return (
-    // Add `pt-16` so the heading sits below a fixed-height nav (h-16)
     <section className="min-h-screen flex items-center justify-center relative px-4 pt-16">
       <div className="text-center max-w-4xl mx-auto">
         <div className="mb-8">

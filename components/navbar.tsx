@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 
-// Import a more handwritten, signature-style font
 import { Great_Vibes } from "next/font/google"
 const signatureFont = Great_Vibes({
   weight: "400",

@@ -28,9 +28,8 @@ export const metadata: Metadata = {
   },
   generator: "v0.dev",
 
-  // ✅ Add your favicon here
   icons: {
-    icon: "/logo.png", // Or .ico, .svg — make sure it’s in /public
+    icon: "/logo.png", 
   },
 };
 

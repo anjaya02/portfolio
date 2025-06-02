@@ -11,20 +11,6 @@ interface Ripple extends Point {
   id: number;
 }
 
-/**
- * A responsive, visually-appealing custom cursor:
- * • Small core dot that sticks to the mouse.
- * • Larger ring that *lags* slightly behind (duration-150).
- * • Click produces a ripple that expands + fades once.
- *
- * Tailwind v3+ is required. Add the keyframe below to your global CSS
- * (e.g. `src/app/globals.css`) so the ripple plays only once:
- *
- * @keyframes ripple {
- *   0%   { transform: scale(0);   opacity: 0.5; }
- *   100% { transform: scale(1.5); opacity: 0;   }
- * }
- */
 export default function CustomCursor() {
   const [pos, setPos] = useState<Point>({ x: 0, y: 0 });
   const [isHidden, setIsHidden] = useState(true);

@@ -1,12 +1,8 @@
-// app/api/contact/route.ts
-
 import { Resend } from "resend";
 import { NextResponse, type NextRequest } from "next/server";
 
-// ✅ Force Node.js runtime (Edge default causes issues with Resend SDK)
 export const runtime = "nodejs";
 
-// ✅ Check if RESEND_API_KEY exists
 const resendApiKey = process.env.RESEND_API_KEY;
 if (!resendApiKey) {
   console.error("❌ RESEND_API_KEY is not set in .env.local");
@@ -22,15 +18,12 @@ export async function POST(req: NextRequest) {
 
     const { name, email, subject, message } = body;
 
-    // ✅ Basic validation
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { ok: false, error: "All fields are required." },
         { status: 400 }
       );
     }
-
-    // ✅ Attempt to send email
     const result = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "anjayainduwara@gmail.com",

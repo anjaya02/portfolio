@@ -27,9 +27,6 @@ import {
 import { FaAws } from "react-icons/fa"
 import { TbBrandVscode } from "react-icons/tb"
 
-/**
- * Map a skill name to its corresponding icon component.
- */
 const iconMap = {
   // Front-end
   React: SiReact,

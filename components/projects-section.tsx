@@ -9,15 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 
-/**
- * Describe one portfolio project.
- */
 interface Project {
   title: string;
   description: string;
   image: string;
   technologies: string[];
-  /** Empty string or undefined → button is disabled */
   githubUrl?: string;
   liveUrl?: string;
 }
@@ -145,7 +141,6 @@ export default function ProjectsSection() {
                     )}
                   </Button>
 
-                  {/* Live Demo button */}
                   {p.liveUrl ? (
                     <Button
                       size="sm"
