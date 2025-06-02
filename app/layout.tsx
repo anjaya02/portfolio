@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     type: "website",
   },
   generator: "v0.dev",
+
+  // ✅ Add your favicon here
+  icons: {
+    icon: "/logo.png", // Or .ico, .svg — make sure it’s in /public
+  },
 };
 
 export default function RootLayout({
