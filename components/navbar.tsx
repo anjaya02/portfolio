@@ -1,31 +1,39 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun, Menu, X } from "lucide-react"
-import { useTheme } from "@/components/theme-provider"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
+
+// Import Dancing Script from next/font/google
+import { Dancing_Script } from "next/font/google";
+const dancingScript = Dancing_Script({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-signature",
+});
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-    setIsMobileMenuOpen(false)
-  }
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
 
   const navItems = [
     { label: "About", id: "about" },
@@ -33,23 +41,35 @@ export default function Navbar() {
     { label: "Skills", id: "skills" },
     { label: "Experience", id: "experience" },
     { label: "Contact", id: "contact" },
-  ]
+  ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-purple-500/20" : "bg-transparent"
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-purple-500/20"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo (in Dancing Script) */}
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection("hero")}
-              className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300"
+              className={`
+                ${dancingScript.className}       /* ← injects Dancing Script */
+                text-2xl 
+                bg-gradient-to-r from-purple-400 to-blue-400 
+                bg-clip-text 
+                text-transparent 
+                hover:from-purple-300 
+                hover:to-blue-300 
+                transition-all duration-300
+                whitespace-nowrap               /* prevent line breaks */
+              `}
             >
-              JD
+              Anjaya Induwara
             </button>
           </div>
 
@@ -76,7 +96,11 @@ export default function Navbar() {
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-purple-400"
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
 
             {/* Mobile menu button */}
@@ -87,7 +111,11 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-muted-foreground hover:text-purple-400"
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
           </div>
@@ -111,5 +139,5 @@ export default function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }

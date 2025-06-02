@@ -20,7 +20,7 @@ export default function AboutSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <p className="text-lg text-gray-300 leading-relaxed">
-              With over 5 years of experience in web development, I specialize in React, Next.js, and modern JavaScript
+              With over 3 years of experience in web development, I specialize in React.js, Next.js, and modern JavaScript
               frameworks. I believe in writing clean, maintainable code and creating exceptional user experiences.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">

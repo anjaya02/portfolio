@@ -1,40 +1,48 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
+import wavepassImage from "../assets/wavepass.png";
+import classImage from "../assets/class.png";
+import churnImage from "../assets/churn.png";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink, Github } from "lucide-react";
 
 export default function ProjectsSection() {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "WavePass Ticketing System",
       description:
-        "A full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Tailwind CSS"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+        "Built a real-time boat ride ticketing app with vendor/customer roles, live analytics (WebSockets + Chart.js), and concurrency-safe purchases using async mutex. Designed with a responsive UI and a consumer-producer architecture.",
+      // point to the actual WavePass screenshot
+      image: wavepassImage.src,
+      technologies: ["React.js", "Node.js", "MongoDB", "Socket.io", "Tailwind CSS"],
+      githubUrl: "https://github.com/anjaya02/wavepass-ticketing-system",
+      liveUrl: "#", 
     },
     {
-      title: "Task Management App",
+      title: "Grade Classification Calculator",
       description:
-        "A collaborative task management application built with Next.js and Firebase. Real-time updates, team collaboration, and project tracking.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["Next.js", "Firebase", "TypeScript", "Framer Motion"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+        "Developed a web tool to help CS and SE undergraduates at IIT predict final degree classifications. Features weighted grade calculations, automatic exclusion of the lowest optional module, and a responsive, modern UI.",
+      // point to the actual “class” screenshot
+      image: classImage.src,
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      githubUrl: "https://github.com/anjaya02/grade-calculator",
+      liveUrl: "https://iit-degree-class.vercel.app/",
     },
     {
-      title: "Weather Dashboard",
-      description:
-        "A responsive weather dashboard with location-based forecasts, interactive maps, and data visualization using Chart.js.",
-      image: "/placeholder.svg?height=200&width=400",
-      technologies: ["React", "Chart.js", "OpenWeather API", "CSS Modules"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
+      title: "Customer Churn Prediction System",
+      description: `
+Proud to share a hands on ML project where I built a Customer Churn Prediction System based on the Telco dataset. The goal? To identify customers who are likely to leave the service helping businesses take proactive action to retain them.
+      `.trim(),
+      // point to the actual “churn” screenshot
+      image: churnImage.src,
+      technologies: ["Python", "pandas", "scikit-learn", "imbalanced-learn", "Flask", "HTML/CSS"],
+      githubUrl: "https://github.com/anjaya02/churn_project",
+      liveUrl: "#", 
     },
-  ]
+  ];
 
   return (
     <section id="projects" className="py-20 px-4 bg-slate-900/30">
@@ -57,16 +65,24 @@ export default function ProjectsSection() {
               <CardHeader className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img
-                    src={project.image || "/placeholder.svg"}
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                 </div>
               </CardHeader>
+
               <CardContent className="p-6">
-                <CardTitle className="text-xl font-bold text-white mb-3">{project.title}</CardTitle>
-                <p className="text-gray-400 mb-4 line-clamp-3">{project.description}</p>
+                <CardTitle className="text-xl font-bold text-white mb-3">
+                  {project.title}
+                </CardTitle>
+
+                {/* Full description shows with whitespace preserved */}
+                <p className="text-gray-400 mb-4 whitespace-pre-line">
+                  {project.description}
+                </p>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (
                     <Badge
@@ -78,6 +94,7 @@ export default function ProjectsSection() {
                     </Badge>
                   ))}
                 </div>
+
                 <div className="flex space-x-3">
                   <Button
                     size="sm"
@@ -85,17 +102,32 @@ export default function ProjectsSection() {
                     className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white"
                     asChild
                   >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={
+                        project.githubUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
+                      }
+                    >
                       <Github className="h-4 w-4 mr-2" />
                       Code
                     </a>
                   </Button>
+
                   <Button
                     size="sm"
                     className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                     asChild
                   >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={
+                        project.liveUrl === "#" ? "opacity-50 cursor-not-allowed" : ""
+                      }
+                    >
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Live Demo
                     </a>
@@ -107,5 +139,5 @@ export default function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
