@@ -35,7 +35,7 @@ export default function HeroSection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
           <a
-            href="https://drive.google.com/file/d/1ONHbDX-GJlkJncNsiIhCnXliRAmc3TVz/view?usp=sharing"
+            href="https://drive.google.com/file/d/1_HE2HuVuocEdJL-ZtFebOpDKuXtQm3oT/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 text-lg"
