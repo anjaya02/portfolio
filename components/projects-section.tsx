@@ -3,6 +3,7 @@
 import wavepassImage from "../assets/wavepass.png";
 import classImage from "../assets/class.png";
 import churnImage from "../assets/churn.png";
+import digitalStockImage from "../assets/digitalstock.jpeg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -56,6 +57,19 @@ const projects: Project[] = [
     ],
     githubUrl: "https://github.com/anjaya02/churn_project",
   },
+  {
+    title: "DigitalStock POS System",
+    description:
+      "Mobile POS for small Sri Lankan shops — built for bakeries, stationery vendors, and lunch stalls. Features include real-time & offline sales entry, LankaQR/Cash/Card tracking, auto stock updates, PDF receipts, and per-user data security.",
+    image: digitalStockImage.src,
+    technologies: [
+      "Flutter",
+      "Supabase",
+      "Provider",
+      "PDF/Print",
+    ],
+    githubUrl: "https://github.com/anjaya02/digitalstock",
+  },
 ];
 
 export default function ProjectsSection() {
@@ -65,7 +79,6 @@ export default function ProjectsSection() {
       className="py-20 px-4 bg-gray-100/70 dark:bg-slate-900/30 backdrop-blur-sm"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
             Featured Projects
@@ -76,14 +89,12 @@ export default function ProjectsSection() {
           </p>
         </div>
 
-        {/* Project cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => (
             <Card
               key={p.title}
               className="group overflow-hidden border border-transparent bg-white/80 dark:bg-slate-900/50 backdrop-blur-md transition-transform duration-300 hover:scale-[1.03] hover:border-purple-500/40"
             >
-              {/* Thumbnail */}
               <CardHeader className="p-0">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
@@ -103,7 +114,6 @@ export default function ProjectsSection() {
                   {p.description}
                 </p>
 
-                {/* Tech badges */}
                 <div className="flex flex-wrap gap-2">
                   {p.technologies.map((t) => (
                     <Badge
@@ -116,9 +126,7 @@ export default function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* Actions */}
                 <div className="flex space-x-3 pt-2">
-                  {/* GitHub button */}
                   <Button
                     size="sm"
                     variant="outline"
