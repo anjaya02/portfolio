@@ -125,13 +125,13 @@ export default function ProjectsSection() {
               className="group overflow-hidden border border-transparent bg-white/80 dark:bg-slate-900/50 backdrop-blur-md transition-transform duration-300 hover:scale-[1.03] hover:border-purple-500/40"
             >
               <CardHeader className="p-0">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[16/9] overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
                     src={p.image}
                     alt={p.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent dark:from-slate-900/80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent dark:from-slate-900/60" />
                 </div>
               </CardHeader>
 
