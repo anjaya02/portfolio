@@ -4,6 +4,8 @@ import wavepassImage from "../assets/wavepass.png";
 import classImage from "../assets/class.png";
 import churnImage from "../assets/churn.png";
 import digitalStockImage from "../assets/digitalstock.jpeg";
+import taskbasedImage from "../assets/Taskbased.png";
+import employeeImage from "../assets/employee.jpg";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,6 +22,38 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: "Task Manager Application",
+    description:
+      "Full-stack task management web application with JWT authentication, real-time updates, and comprehensive CRUD operations. Features advanced filtering, sorting, due date management with overdue detection, and responsive glassmorphism design.",
+    image: taskbasedImage.src,
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Tailwind CSS",
+      "Vite",
+      "Docker",
+    ],
+    githubUrl: "https://github.com/anjaya02/task-based-web-app",
+    liveUrl: "https://task-based-web-app.vercel.app/",
+  },
+  {
+    title: "Employee Attendance & Tasks App",
+    description:
+      "Flutter-based mobile application for employee attendance tracking and daily task management. Features check-in/check-out functionality, real-time attendance status, task creation with priorities and due dates, and local data persistence using SharedPreferences.",
+    image: employeeImage.src,
+    technologies: [
+      "Flutter",
+      "Dart",
+      "SharedPreferences",
+      "Material Design",
+      "Cross-platform",
+    ],
+    githubUrl: "https://github.com/anjaya02/employee-attendance-tasks-app",
+  },
   {
     title: "WavePass Ticketing System",
     description:
@@ -62,12 +96,7 @@ const projects: Project[] = [
     description:
       "Mobile POS for small Sri Lankan shops — built for bakeries, stationery vendors, and lunch stalls. Features include real-time & offline sales entry, LankaQR/Cash/Card tracking, auto stock updates, PDF receipts, and per-user data security.",
     image: digitalStockImage.src,
-    technologies: [
-      "Flutter",
-      "Supabase",
-      "Provider",
-      "PDF/Print",
-    ],
+    technologies: ["Flutter", "Supabase", "Provider", "PDF/Print"],
     githubUrl: "https://github.com/anjaya02/digitalstock",
   },
 ];
