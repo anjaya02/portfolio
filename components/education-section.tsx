@@ -24,8 +24,7 @@ const education: Edu[] = [
     degree: "Physical Science Stream",
     institution: "Nalanda College, Colombo 10",
     duration: "2019 ‑ 2022",
-    description:
-      "Combined Mathematics ‑ B • Chemistry ‑ C • Physics ‑ S — built strong analytical and laboratory skills while balancing extracurricular leadership roles.",
+    description: "Combined Mathematics ‑ B • Chemistry ‑ C • Physics ‑ S",
     achievements: ["Combined Mathematics ‑ B", "Chemistry ‑ C", "Physics ‑ S"],
   },
 ];

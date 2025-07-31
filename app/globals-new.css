@@ -46,7 +46,7 @@
   }
 
   .light {
-    --background: 240 10% 98%;
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -54,11 +54,11 @@
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 262.1 83.3% 57.8%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 220 14.3% 95.9%;
+    --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 220 14.3% 95.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 26.9%;
+    --accent: 210 40% 96%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -67,9 +67,8 @@
     --ring: 262.1 83.3% 57.8%;
 
     /* Light mode glass */
-    --glass-bg: rgba(255, 255, 255, 0.95);
-    --glass-border: rgba(139, 92, 246, 0.2);
-    --glass-blur: blur(10px);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -247,17 +246,8 @@ html {
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
-  border: none !important;
-  border-width: 0 !important;
+  border: 1px solid var(--glass-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-/* Remove all borders from glass cards */
-.glass-card,
-.glass-card * {
-  border: none !important;
-  border-width: 0 !important;
-  outline: none !important;
 }
 
 .glass-card-hover {
@@ -477,93 +467,4 @@ html {
   .glow-text {
     animation: none;
   }
-}
-
-/* Force remove all borders from cards and buttons */
-.glass-card,
-[data-radix-collection-item],
-button.glass-card,
-div.glass-card,
-.glass-card > *,
-[class*="glass-card"] {
-  border: none !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  outline: none !important;
-}
-
-/* Override shadcn/ui card borders specifically */
-.rounded-lg.border {
-  border: none !important;
-}
-
-/* Override button outline variant borders */
-button[data-variant="outline"] {
-  border: none !important;
-}
-
-/* Light mode improvements */
-.light {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-}
-
-.light .glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(139, 92, 246, 0.15);
-  box-shadow:
-    0 8px 32px rgba(139, 92, 246, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.light .glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(139, 92, 246, 0.3);
-  transform: translateY(-2px);
-  box-shadow:
-    0 12px 40px rgba(139, 92, 246, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.light .gradient-text {
-  background: linear-gradient(135deg, #7c3aed, #3b82f6, #06b6d4);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.light .text-gray-400 {
-  color: rgb(75 85 99) !important;
-}
-
-.light .text-gray-300 {
-  color: rgb(55 65 81) !important;
-}
-
-.light .text-gray-500 {
-  color: rgb(107 114 128) !important;
-}
-
-/* Light mode back-to-top button improvements */
-.light .glass-card.fixed {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  box-shadow:
-    0 10px 30px rgba(139, 92, 246, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.light .glass-card.fixed:hover {
-  background: rgba(255, 255, 255, 1);
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow:
-    0 15px 40px rgba(139, 92, 246, 0.25),
-    0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.light .glass-card.fixed .text-purple-400 {
-  color: rgb(139 92 246) !important;
-}
-
-.light .glass-card.fixed:hover .text-purple-400 {
-  color: rgb(255 255 255) !important;
 }

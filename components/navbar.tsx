@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun, Menu, X } from "lucide-react"
-import { useTheme } from "@/components/theme-provider"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun, Menu, X } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
-import { Great_Vibes } from "next/font/google"
-const signatureFont = Great_Vibes({
-  weight: "400",
+import { Poppins } from "next/font/google";
+const logoFont = Poppins({
+  weight: ["600", "700"],
   subsets: ["latin"],
-})
+});
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark")
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    setIsMobileMenuOpen(false)
-  }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
 
   const navItems = [
     { label: "About", id: "about" },
@@ -35,7 +35,7 @@ export default function Navbar() {
     { label: "Skills", id: "skills" },
     { label: "Experience", id: "experience" },
     { label: "Contact", id: "contact" },
-  ]
+  ];
 
   return (
     <nav
@@ -47,10 +47,10 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Signature logo */}
+          {/* Clean modern logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className={`text-2xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 whitespace-nowrap ${signatureFont.className}`}
+            className={`text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 hover:scale-105 tracking-tight ${logoFont.className}`}
           >
             Anjaya Induwara
           </button>
@@ -78,7 +78,11 @@ export default function Navbar() {
               onClick={toggleTheme}
               className="text-muted-foreground hover:text-purple-400"
             >
-              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
 
             {/* Mobile menu button */}
@@ -89,7 +93,11 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="text-muted-foreground hover:text-purple-400"
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
           </div>
@@ -113,5 +121,5 @@ export default function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }
