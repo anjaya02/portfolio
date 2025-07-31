@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   generator: "v0.dev",
 
   icons: {
-    icon: "/logo.png", 
+    icon: "/logo.png",
   },
 };
 
