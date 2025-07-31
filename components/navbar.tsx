@@ -5,12 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 
-import { Poppins } from "next/font/google";
-const logoFont = Poppins({
-  weight: ["600", "700"],
-  subsets: ["latin"],
-});
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,7 +44,7 @@ export default function Navbar() {
           {/* Clean modern logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className={`text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 hover:scale-105 tracking-tight ${logoFont.className}`}
+            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 hover:scale-105 tracking-tight font-sans"
           >
             Anjaya
           </button>
