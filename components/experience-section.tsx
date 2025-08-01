@@ -16,7 +16,7 @@ const experiences: Experience[] = [
   {
     role: "Trainee Software Engineer",
     company: "Sri Lanka Telecom",
-    duration: "July 2024 – Present",
+    duration: "July 2024 – June 2025",
     description:
       "Working on internal web/mobile projects, contributing across full‑stack and mobile codebases within an Agile team.",
     achievements: [
