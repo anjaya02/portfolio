@@ -17,14 +17,15 @@ const education: Edu[] = [
     institution: "University of Westminster",
     duration: "2023 ‑ 2028",
     description:
-      "Studied core areas including software engineering, data structures, algorithms, AI, cybersecurity, and full‑stack development with hands‑on projects.",
-    achievements: ["Batch Representative L5/L6"],
+      "Studied core areas including software engineering, data structures, algorithms, AI, OOP, cybersecurity, and full‑stack development with hands‑on projects.",
+    achievements: ["Batch Representative L4/L5"],
   },
   {
     degree: "Physical Science Stream",
     institution: "Nalanda College, Colombo 10",
     duration: "2019 ‑ 2022",
-    description: "Combined Mathematics ‑ B • Chemistry ‑ C • Physics ‑ S",
+    description:
+      "Completed the rigorous Sri Lanka G.C.E. Advanced Level (Physical Science Stream), emphasizing analytical thinking, experimental skills, and quantitative problem-solving in mathematics, physics, and chemistry.",
     achievements: ["Combined Mathematics ‑ B", "Chemistry ‑ C", "Physics ‑ S"],
   },
 ];
