@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Code } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 
 export default function Navbar() {
@@ -44,9 +44,9 @@ export default function Navbar() {
           {/* Clean modern logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent hover:from-purple-300 hover:to-blue-300 transition-all duration-300 hover:scale-105 tracking-tight font-sans"
+            className="p-1 hover:scale-110 transition-transform"
           >
-            Anjaya
+            <Code className="h-8 w-8 text-purple-400" />
           </button>
 
           {/* Desktop navigation */}
